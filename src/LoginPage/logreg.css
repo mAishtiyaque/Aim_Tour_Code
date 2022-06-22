@@ -1,0 +1,97 @@
+
+.login-box{
+    justify-self: center;
+    width: clamp(190px,45vw,380px);
+    /* transform: scale(2); */
+    background-color: #abf7da64;
+    margin:auto;
+    /* margin-top: 20px; */
+    transform: translateY(20px);
+    padding:20px;
+    border-radius: 6px;
+    /* border:10px solid red; */
+    /* box-shadow:0 0 8px 3px#abf7da64; */
+}
+.frm{
+    display:grid;
+    grid-template-columns: 1fr;
+}
+.login-box .logsig{
+    display:flex;
+    justify-content:space-between;
+}
+.login-box .logsig button{
+	font-size: 2.1em;
+	padding: 10px 0;
+    position: relative;
+    margin-bottom: 10px;
+    background-color:transparent;
+    border-bottom: 5px solid transparent;
+    color:black;
+}
+
+/* .login-box button::before{
+    position: absolute;
+    content: '';
+    width: 101px;
+    background-color:#9999ff;
+    bottom: 5px;
+    left: 3px;
+    height: 6px;
+} */
+.textbox{
+	width:100%;
+	overflow:hidden;
+	font-size:20px;
+	margin:15px 0;
+	border-bottom:1px solid #9999ff;
+    display: flex;
+    flex-direction: column;
+}
+.textbox input{
+    width:calc( 100% - 16px);
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 18px;
+    margin: 0px 8px;
+}
+.invalid-feedback{
+    margin-left: 12px;
+}
+.textbox i{
+    margin: 5px 0px;
+	width: 26px;
+	float: left;
+	text-align: center;
+}
+.submit{
+    border:  solid;
+    background-color: transparent;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    font-size: xx-large ;
+    margin:15px 0;
+    }
+.submit:active{
+    background-color: #ffffff;
+    }
+.submit:focus{
+    outline: none;
+}
+.submit button{
+    outline: none;
+    border: none;
+    background:transparent;
+}
+
+.frm a{
+ text-decoration:none;
+ margin-top: 10px;
+ color:#9999ff;
+}
+.frm a:hover,.submit:hover{
+    text-decoration:underline 2px;
+    color:#9999ff;
+}

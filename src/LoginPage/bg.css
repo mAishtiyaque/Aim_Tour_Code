@@ -1,0 +1,30 @@
+*{
+	box-sizing: border-box;
+}
+/*a{
+	color:black;
+	font-size: 2pc;
+}*/
+body{
+	margin: 0;
+	padding: 0;
+	font-family: Segoe UI, sans-serif;
+   
+}
+.block{ 
+        overflow: hidden;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius:50%;
+        z-index: -1;
+        background-color: #f7e9e9;
+        box-shadow: 7px 8px 8px #00000033,
+        -8px -8px 18px rgba(0,0,0,.3);
+    }
+.block:nth-child(3n+2){
+        background-color:#2d9b17;
+    }
+.block:nth-child(3n+3){
+        background-color:#ffa600;
+}

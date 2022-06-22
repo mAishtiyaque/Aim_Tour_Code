@@ -1,0 +1,40 @@
+.beachdetails{
+    padding:2vw;
+    width:100%;
+}
+.beachdetails .beach_imgs{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-gap: 8px;
+    
+}
+
+.beach_imgs li {
+    list-style: none;
+}
+.beach_imgs li img{
+    width: 100%;
+    object-fit: contain;
+}
+
+.beachdetails .beach_text{
+    padding:4vw;
+    font-size:1.2em;
+}
+.beachdetails .beach_text_map{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+.beachdetails .beach_text_map div{
+    margin:5vw;
+}
+
+@media (max-width:768px) {
+    .beachdetails .beach_imgs{
+        grid-template-columns:repeat(2,1fr);
+    }
+    .beachdetails .beach_text_map{
+        display:grid;
+        grid-template-columns:1fr;
+    }
+}
