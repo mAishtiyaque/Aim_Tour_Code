@@ -1,7 +1,7 @@
 import './ListTree.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import { userActions } from '../_actions';
+import { userActions } from '../../_actions';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 function ListTree() {
@@ -46,4 +46,4 @@ function ListTree() {
         </>
     );
 }
-export default ListTree;
+export {ListTree};

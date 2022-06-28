@@ -1,0 +1,15 @@
+
+.select-box{
+    margin:8px 0 0 2vw;
+}
+.select-box option{
+    border-radius:0;
+}
+.select-box select{
+    margin:4px;
+    border:2px solid rgb(99, 99, 85);
+    border-radius: 0;
+}
+.select-box select:focus{
+    outline:none;
+}

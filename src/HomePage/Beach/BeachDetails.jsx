@@ -1,15 +1,15 @@
 //import { useNavigate } from 'react-router-dom';
 //let user = JSON.parse(localStorage.getItem('user'));
 import './beachdetails.css'
-import {imageData}  from '../_helpers/beachdata';
+import {beachDetailsImages}  from '../../_helpers/beachdata';
 import { useParams } from 'react-router-dom';
-
-
+import {DropDown} from './DropDown'
 function BeachDetails() {
     const param=useParams();
-    const itemDetails =imageData.filter((item)=>{return item.id===param.id })[0];
+    const itemDetails =beachDetailsImages.filter((item)=>{return item.id===param.id })[0];
     return (
-        <div >
+        <div>
+            <DropDown itemDetails={itemDetails}/>
             <div className="beachdetails">
                 <h3 className="beach_title">{itemDetails.title}</h3>
                 <div className="beach_imgs">

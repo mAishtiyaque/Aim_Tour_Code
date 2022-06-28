@@ -1,8 +1,8 @@
 import React,{ useState} from 'react';
 import './AddItem.css';
 import {useDispatch, useSelector} from 'react-redux';
-import { alertActions, userActions } from '../_actions';
-import { userConstants } from '../_constants';
+import { alertActions, userActions } from '../../_actions';
+import { userConstants } from '../../_constants';
 
 
 function AddItem() {
@@ -37,4 +37,4 @@ function AddItem() {
 
 }
 
-export default AddItem;
+export { AddItem};
