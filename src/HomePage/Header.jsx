@@ -33,7 +33,7 @@ function Header() {
                 <div>
                     <h2>EXPLORE THE WORLD</h2>
                     <p>
-                    Scenic beaches, exciting water-sports, partying spots, and architectural landmarks come together to make Goa a traveler’s delight. 
+                    Scenic beaches, exciting water-sports, partying spots, and architectural landmarks come together to make Goa a traveler's delight. 
                     </p>
                 </div>
             </div>

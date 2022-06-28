@@ -11,7 +11,7 @@ import {
 import AlertComponent from './_components/AlertComponet'
 import App from './App';
 import { LogReg } from './LoginPage/LogReg';
-import { BeachDetails } from './HomePage/BeachDetails';
+import { BeachDetails } from './HomePage/Beach';
 import Header from './HomePage/Header'
 import reportWebVitals from './reportWebVitals';
 import { store } from './_helpers'
