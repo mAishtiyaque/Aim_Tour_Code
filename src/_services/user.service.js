@@ -5,7 +5,8 @@ export const userService = {
     logout,
     delete: _delete,
     getlist,
-    additem
+    additem,
+    weather
 };
 
 async function register(user) {
@@ -103,3 +104,14 @@ function handleResponse(response) {
         }
     });
 }
+const api_key='1cbca049c5ce3df62f9d0eeb60ef5ddb';
+async function weather(lat,long){
+    return await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api_key}`)
+      .then(res => res.json())
+      .then(result => {
+        //setData(result)
+        //console.log(result);
+        return result;
+    },err=>console.log(err));
+}
+//15.551177544388494, 73.75352740226795

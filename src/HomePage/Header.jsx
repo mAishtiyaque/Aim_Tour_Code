@@ -12,7 +12,7 @@ function Header() {
     useEffect(() => {
         if (loggedin) setLogg("LOGOUT");
         else setLogg("LOGIN");
-    },[loggedin]);
+    }, [loggedin]);
     const handleLogins = () => {
         if (loggedin)
             dispatch(userActions.logout(user.username, user.token));
@@ -22,7 +22,7 @@ function Header() {
     return (
 
         <div className='header'>
-            <img src={process.env.PUBLIC_URL+"/holiday.jpg"} alt="Heading Img" />
+            <img src={process.env.PUBLIC_URL + "/holiday.jpg"} alt="Heading Img" />
             <div className='header_content'>
                 <div >
                     <div>
@@ -33,11 +33,22 @@ function Header() {
                 <div>
                     <h2>EXPLORE THE WORLD</h2>
                     <p>
-                    Scenic beaches, exciting water-sports, partying spots, and architectural landmarks come together to make Goa a traveler's delight. 
+                        Scenic beaches, exciting water-sports, partying spots, and architectural landmarks come together to make Goa a traveler's delight.
                     </p>
+                    <Nav />
                 </div>
             </div>
         </div>
     );
 };
 export default Header;
+
+function Nav() {
+    const navigate=useNavigate();
+    return (
+        <div className='nav_btn'>
+            <button className='btn_trans' onClick={() => navigate('/')}>Home</button>
+            <button className='btn_trans' onClick={() => navigate('/dashboard')}>Dashboard</button>
+        </div>
+    )
+}

@@ -11,7 +11,8 @@ export const userActions = {
     getList,
     addItem,
     register,
-    getAll
+    getAll,
+    weather
 };
 
 function login(username, password, navigate) {
@@ -51,6 +52,7 @@ function logout(userID,token) {
             dispatch({  type: alertConstants.INFO,message:data.statusText });
         },
         error=>{
+            dispatch({ type: userConstants.LOGOUT });
             dispatch(alertActions.error(error.toString()));
         }
         )
@@ -119,6 +121,21 @@ function addItem(userID,token,newitem,list){
                 },
                 error => {
                     dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+}
+function weather(lat,long){
+    return dispatch => {
+        userService.weather(lat,long)
+            .then(
+                data => {
+                    //console.log(data);
+                    dispatch({type:userConstants.WEATHER_DATA,data:data});
+                    
+                },
+                error => {
+                    console.log(error);
                 }
             );
     };

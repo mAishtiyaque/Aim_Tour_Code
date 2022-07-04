@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
 //let user = JSON.parse(localStorage.getItem('user'));
 // import { userActions } from '../_actions';
-import {ListTree,AddItem} from './TodoUtil'
+//import {ListTree,AddItem} from './TodoUtil'
 
 import './HomePage.css'
 import { homePageImages } from './../_helpers/beachdata'
 function HomePage() {
-    const loggedin = useSelector(state => state.authentication.loggedIn);
-    const user = useSelector(state => state.authentication.user);
+    // const loggedin = useSelector(state => state.authentication.loggedIn);
+    // const user = useSelector(state => state.authentication.user);
     const navigate = useNavigate();
     return (
         <div className="home">
@@ -28,16 +28,6 @@ function HomePage() {
                     </li>
                 ))}
             </div>
-
-            {loggedin &&
-                <div className="user_plan">
-                    <div className='username_logout_div'>
-                        <h1>Hi {user.firstName}!</h1>
-                    </div>
-                    <AddItem />
-                    <ListTree />
-                </div>
-            }
         </div>
     );
 }

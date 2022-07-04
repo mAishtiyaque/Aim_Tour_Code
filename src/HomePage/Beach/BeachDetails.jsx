@@ -4,14 +4,19 @@ import './beachdetails.css'
 import {beachDetailsImages}  from '../../_helpers/beachdata';
 import { useParams } from 'react-router-dom';
 import {DropDown} from './DropDown'
+import Weather from './Weather';
 function BeachDetails() {
     const param=useParams();
     const itemDetails =beachDetailsImages.filter((item)=>{return item.id===param.id })[0];
+    
     return (
         <div>
             <DropDown itemDetails={itemDetails}/>
             <div className="beachdetails">
-                <h3 className="beach_title">{itemDetails.title}</h3>
+                <div className="title_weather_box" style={{ display:"flex"}}>
+                    <h3 className="beach_title">{itemDetails.title}</h3>
+                    <Weather itemDetails={itemDetails}/>
+                </div>
                 <div className="beach_imgs">
                     {itemDetails.imgs.map((item) => (
                         <li key={item.img}>

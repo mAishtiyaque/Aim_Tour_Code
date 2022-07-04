@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate} from "react-router-dom";
+import { homePageImages } from "../../_helpers/beachdata";
 import './dropdown.css'
 //import Select from "react-select";
 
@@ -8,9 +9,11 @@ function DropDown(props){
 //   useEffect(() => {
 //     // Run! Like go get some data from an API.
 //   }, []);
+
   const countries = [ "India", "America", "Soudi Arab"];
   const states = [ "Goa", "Delhi", "Mumbai"];
-  const locations = [ {id: "goa0",title: 'Calangute Beach'}, {id: "goa1",title: 'Fort Aguada'}, {id: "goa2",title: 'Colva Beach'}];
+  const locations=homePageImages;
+  //const locations = [ {id: "goa0",title: 'Calangute Beach'}, {id: "goa1",title: 'Fort Aguada'}, {id: "goa2",title: 'Colva Beach'}];
   const [val, setVal]=useState({
     country:props.itemDetails.country,
     _state:props.itemDetails._state,
@@ -67,26 +70,3 @@ function DropDown(props){
 }
 export {DropDown}
 
-
-// import React, { Component } from "react";
-// import ReactDOM from "react-dom";
-
-
-// import "./styles.css";
-
-
-// class App extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       value1: false,
-//       value2: false
-//     };
-//   }
-
-//   render() {
-//     return (
-      
-//     );
-//   }
-// }

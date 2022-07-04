@@ -28,30 +28,6 @@ body{
     padding: 4px;
 }
 
-.username_logout_div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.username_logout_div button {
-    background-color: #17a2b8;
-    border: none;
-    color: white;
-    max-height: 40px;
-}
-
-.username_logout_div button:focus {
-    border: none;
-    outline: none;
-}
-
-.username_logout_div button:active {
-    border: none;
-    outline: none;
-    background-color: #ced9fa;
-}
-
 @media (min-width:768px) {
     * {
         font-size: calc(9px + .5vw);
