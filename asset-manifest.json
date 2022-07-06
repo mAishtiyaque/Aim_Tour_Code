@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Aim-Tour/static/css/main.d98c2c92.chunk.css",
+    "main.js": "/Aim-Tour/static/js/main.7a3c65ca.chunk.js",
+    "main.js.map": "/Aim-Tour/static/js/main.7a3c65ca.chunk.js.map",
+    "runtime-main.js": "/Aim-Tour/static/js/runtime-main.60d628d6.js",
+    "runtime-main.js.map": "/Aim-Tour/static/js/runtime-main.60d628d6.js.map",
+    "static/js/2.a15f82a6.chunk.js": "/Aim-Tour/static/js/2.a15f82a6.chunk.js",
+    "static/js/2.a15f82a6.chunk.js.map": "/Aim-Tour/static/js/2.a15f82a6.chunk.js.map",
+    "static/js/3.3ac16a27.chunk.js": "/Aim-Tour/static/js/3.3ac16a27.chunk.js",
+    "static/js/3.3ac16a27.chunk.js.map": "/Aim-Tour/static/js/3.3ac16a27.chunk.js.map",
+    "index.html": "/Aim-Tour/index.html",
+    "static/css/main.d98c2c92.chunk.css.map": "/Aim-Tour/static/css/main.d98c2c92.chunk.css.map",
+    "static/js/2.a15f82a6.chunk.js.LICENSE.txt": "/Aim-Tour/static/js/2.a15f82a6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.60d628d6.js",
+    "static/js/2.a15f82a6.chunk.js",
+    "static/css/main.d98c2c92.chunk.css",
+    "static/js/main.7a3c65ca.chunk.js"
+  ]
+}
