@@ -23,7 +23,7 @@ const homePageImages = [
 ];
 
 
-const beachDetailsImages = [
+const beachsData = [
     {
         id: "goa0",
         imgs: [
@@ -90,4 +90,4 @@ const beachDetailsImages = [
 ];
 
 
-export { homePageImages, beachDetailsImages };
+export { homePageImages, beachsData };

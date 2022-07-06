@@ -1,0 +1,40 @@
+
+.add_item_parent_div{
+  width: 60%;
+  max-width: 50vw;
+  margin: 1vw 0;
+}
+.add_item_parent_div div{
+  display: grid;
+  grid-template-columns:  auto auto;
+}
+.add_item_parent_div input,.add_item_parent_div button{
+  padding:8px;
+  border: 2px solid #071a52;
+}
+input:focus,input:active{
+  outline: none;
+
+}
+.add_item_parent_div button{
+  background-color: #071a52;
+  color: white;
+  cursor: pointer;
+  border-left: none;
+  font-weight: 600;
+  transform: translateX(0px);
+
+}
+.add_item_parent_div button:focus,.add_item_parent_div button:active{
+  border: 2px solid #071a52;
+  border-left: none;
+  outline: none;
+}
+.add_item_parent_div button:active{
+  background-color: #ced9fa;
+  color: #071a52;
+}
+ul{
+  list-style: none;
+  padding: 0;
+}

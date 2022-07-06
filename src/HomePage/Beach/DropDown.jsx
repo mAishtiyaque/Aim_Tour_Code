@@ -15,9 +15,9 @@ function DropDown(props){
   const locations=homePageImages;
   //const locations = [ {id: "goa0",title: 'Calangute Beach'}, {id: "goa1",title: 'Fort Aguada'}, {id: "goa2",title: 'Colva Beach'}];
   const [val, setVal]=useState({
-    country:props.itemDetails.country,
-    _state:props.itemDetails._state,
-    location:props.itemDetails.title
+    country:props.beachDetails.country,
+    _state:props.beachDetails._state,
+    location:props.beachDetails.title
   });
   const {country,_state,location}=val;
   function onChange(e){
@@ -40,7 +40,7 @@ function DropDown(props){
                 disabled
                 >
                 {countries.map((option)=>(
-                    <option value={option}>{option}</option>
+                    <option key={option} value={option}>{option}</option>
                 ))}
                 </select>
 
@@ -51,7 +51,7 @@ function DropDown(props){
                 disabled
                 >
                     {states.map((option)=>(
-                        <option value={option}>{option}</option>
+                        <option key={option} value={option}>{option}</option>
                     ))}
                 </select>
 
@@ -61,7 +61,7 @@ function DropDown(props){
                 value={location}
                 >
                     {locations.map((option)=>(
-                        <option value={option.title}>{option.title}</option>
+                        <option key={option.id} value={option.title}>{option.title}</option>
                     ))}
                 </select>
       </div>

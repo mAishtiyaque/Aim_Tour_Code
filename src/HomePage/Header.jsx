@@ -48,6 +48,7 @@ function Nav() {
     return (
         <div className='nav_btn'>
             <button className='btn_trans' onClick={() => navigate('/')}>Home</button>
+            <button className='btn_trans' onClick={() => navigate('/beach/goa0')}>Explore</button>
             <button className='btn_trans' onClick={() => navigate('/dashboard')}>Dashboard</button>
         </div>
     )

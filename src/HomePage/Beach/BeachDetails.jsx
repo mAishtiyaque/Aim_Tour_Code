@@ -1,24 +1,23 @@
-//import { useNavigate } from 'react-router-dom';
-//let user = JSON.parse(localStorage.getItem('user'));
+
 import './beachdetails.css'
-import {beachDetailsImages}  from '../../_helpers/beachdata';
+import {beachsData}  from '../../_helpers/beachdata';
 import { useParams } from 'react-router-dom';
 import {DropDown} from './DropDown'
 import Weather from './Weather';
 function BeachDetails() {
     const param=useParams();
-    const itemDetails =beachDetailsImages.filter((item)=>{return item.id===param.id })[0];
+    const beachDetails =beachsData.filter((item)=>{return item.id===param.id })[0];
     
     return (
         <div>
-            <DropDown itemDetails={itemDetails}/>
+            <DropDown beachDetails={beachDetails}/>
             <div className="beachdetails">
                 <div className="title_weather_box" style={{ display:"flex"}}>
-                    <h3 className="beach_title">{itemDetails.title}</h3>
-                    <Weather itemDetails={itemDetails}/>
+                    <h3 className="beach_title">{beachDetails.title}</h3>
+                    <Weather beachDetails={beachDetails}/>
                 </div>
                 <div className="beach_imgs">
-                    {itemDetails.imgs.map((item) => (
+                    {beachDetails.imgs.map((item) => (
                         <li key={item.img}>
                             <img
                                 src={`${item.img}`}
@@ -29,9 +28,9 @@ function BeachDetails() {
                     ))}
                 </div>
                 <div className='beach_text_map'>
-                    <p className="beach_text">{itemDetails.text}</p>
+                    <p className="beach_text">{beachDetails.text}</p>
                     <div>
-                        <iframe src={itemDetails.location} title={itemDetails.id} frameBorder="2">
+                        <iframe src={beachDetails.location} title={beachDetails.id} frameBorder="2">
                         </iframe>
                     </div>
                 </div>
