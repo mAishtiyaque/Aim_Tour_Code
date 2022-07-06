@@ -1,18 +1,47 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
-In the project directory, you can run:
+### `Command to Run App`
+<h5>To run React App</h5> 
+First of All Clone Entire project into local directory using below command and run app <br/>
+git clone https://github.com/mAishtiyaque/Aim_Tour_Code.git <br/>
+cd Aim_Tour_Code <br/>
+npm install <br/>
+npm start
 
-### `npm start`
+<h5>To run Server App</h5>
+You have to first install postgreSQL <br/>
+and then create a database named Ahmad. <br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Traverse into server directory and open terminal
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Install all dependencies <br/>
+Flask==2.0.2 <br/>
+flask_migrate==3.1.0 <br/>
+flask_script==2.0.6  <br/>
+Flask_SQLAlchemy==2.5.1 <br/>
+SQLAlchemy==1.4.31 <br/>
+psycopg2-binary==2.9.3 <br/>
+sqlalchemy==1.4.31
+
+And now, <br/>
+You have to create tables using my models.py file. <br/>
+In the same terminal open python shell using (python or python3) and run following scripts <br/>
+
+from models import * <br/>
+from sqlalchemy import create_engine <br/>
+//change password with your password. and Also change password in config.py <br/>
+engine = create_engine("postgresql://postgres:password@localhost/Ahmad", echo=True, future=True) <br/>
+from sqlalchemy.ext.declarative import declarative_base <br/>
+Base = declarative_base() <br/>
+Base.metadata.create_all(engine)  <br/>
+//Tables are created in postgreSQL <br/>
+quit() <br/>
+python app.py <br/>
+
+// server started
+
+Checkout browser [http://localhost:3000](http://localhost:3000)
 
 ### `npm test`
 
@@ -38,6 +67,15 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+<h2>Results </h2>
+
+<img src = "/result/r5.png">
+<img src = "/result/r6.png">
+<img src = "/result/r3.png">
+<img src = "/result/r4.png">
+<img src = "/result/r1.png">
+<img src = "/result/r2.png">
 
 ## Learn More
 

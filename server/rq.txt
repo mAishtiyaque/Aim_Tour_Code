@@ -1,0 +1,197 @@
+from flask import Flask, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
+app = Flask(__name__)
+
+app.config.from_object('config.DevelopmentConfig')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+from models import Book,Userdata
+
+@app.route("/")
+def hello():
+    return "Hello World!"
+
+@app.route("/details")
+def get_book_details():
+    author=request.args.get('ar')
+    name=request.args.get('nm')
+    published=request.args.get('pd')
+    nb=Book(name,author,published)
+    db.session.add(nb)
+    db.session.commit()
+    return "Name :{}, Author : {}, Published: {}".format(name,author,published)
+
+@app.route("/getall")
+def get_all():
+    try:
+        books=Book.query.all()
+        userdata=Userdata.query.all()
+        print(userdata)
+        return  jsonify([[e.serialize() for e in books],[k.serialize() for k in userdata]])
+    except Exception as e:
+	    return(str(e))
+
+if __name__ == '__main__':
+    app.run()
+
+
+
+//created app
+
+from flask import Flask, redirect,request,jsonify,make_response, url_for
+#from flask_sqlalchemy import SQLAlchemy
+import string,random
+from datetime import datetime
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
+
+app = Flask(__name__)
+app.config.from_object('config.DevelopmentConfig')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'], echo=True, future=True)
+
+#db = SQLAlchemy(app)
+from models import Users,Userdata,Tokens
+#print(Users.c.keys())
+#lst=[['Hello Bhai', 312], ['Mr. Owais', 313], ['Hello World', 314], ['Owais Bhai', 315]]
+
+def bad_req(arg=None):
+    print('Bad Request',arg)
+    return "<title>Bad Request</title>%s<h1>Bad Request</h1><p>Bad requested URL.</p>" % arg, 400
+def check_token(req):
+    try:
+        userid=req['username']
+        token=req['token']
+        #stmt = select(Token.c.myid).where(token.c.myid == table2.c.otherid)
+        with Session(engine) as session:
+            token=Tokens.query.filter_by(userid=userid,token=token).first()
+    except Exception:
+        return bad_req("Exception occured")
+    return token
+@app.route('/')
+def home():
+    return "<title>400 Method Not Allowed</title><h1>Method Not Allowed**</h1><p>The method is not allowed for the requested URL.</p>", 400
+@app.route('/users/authenticate', methods=['GET','POST'])
+def handleLogin():
+        if request.method !='POST': return bad_req()
+        if request.is_json:
+            req=request.get_json()
+            try:
+                userid=req['username']
+                passw=req['password']
+                user=Users.query.filter_by(userid=userid,passw=passw).first()
+            except Exception:
+                return bad_req("Exception occured")
+            #db.session.commit()
+            if user:
+                token=''.join(random.SystemRandom().choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(15))
+                print("Loggedin",user.userid)
+                db.session.add(Tokens(userid=userid,token=token))
+                db.session.commit()
+                userdata=Userdata.query.filter_by(userid=userid).all()
+                lst2o=[e.serialize() for e in userdata]
+               
+                res_body= { 
+                        "ok": True,
+                        "statusText": "User Login Success",
+                        "id": user.userid,
+                        "username": user.userid,
+                        "firstName": user.fname,
+                        "lastName": user.lname,
+                        "token": token,
+                        "list":lst2o
+                    }
+            else:
+                res_body={
+                    "ok": False,
+                    "statusText": "Username or password invalid!",
+                }
+            return make_response(jsonify(res_body),200)
+        else:
+            return bad_req()
+@app.route('/users/delete', methods=['GET','POST'])
+def handleItemDelete():
+        if request.method !='POST': return bad_req()
+        if request.is_json:
+            req=request.get_json()
+            print("print",req)
+            token=check_token(req)
+            #check and delete item
+            if token:
+                itemid=req['itemID']
+                userid=req['username']
+                #dat=Tokens.query.filter_by(userid=userid).delete()
+                noitem=db.session.query(Userdata).filter(Userdata.userid==userid,Userdata.textid==itemid).delete()
+                print("Deleted",userid,noitem)
+                db.session.commit()
+                res_body= { "ok": True,
+                        "statusText": "Deleted Successfully",
+                    }
+            else:
+                res_body={
+                    "ok": False,
+                    "statusText": "Unknown Error occured !!",
+                }
+            return make_response(jsonify(res_body),200)
+        else:
+            return bad_req()
+@app.route('/users/getlist', methods=['GET','POST'])
+def handleListget():
+        if request.method !='POST': return bad_req()
+        if request.is_json:
+            req=request.get_json()
+            token=check_token(req)
+            if token:
+                userid=req['username']
+                userdata=Userdata.query.filter_by(userid=userid).all()
+                lst2o=[e.serialize() for e in userdata]
+                print('List Fetched',userid)
+                res_body= { 
+                        "ok": True,
+                        "statusText": "Fetched success",
+                        "list":lst2o
+                    }
+            else:
+                res_body={
+                        "ok": False,
+                        "statusText": "Please Login again"
+                }
+            return make_response(jsonify(res_body),200)
+        else:
+            return bad_req()
+@app.route('/users/additem', methods=['GET','POST'])
+def handleAddItem():
+        if request.method !='POST': return bad_req()
+        if request.is_json :
+            req=request.get_json()
+            #check and delete item
+            try:
+                userid=req['username']
+                token=req['token']
+                newitem=req['newitem']
+                token=Tokens.query.filter_by(userid=userid,token=token).first()
+            except Exception:
+                return bad_req("Exception occured")
+            if token:
+                #add item in db
+                nextid=int(datetime.now().timestamp()*100) 
+                db.session.add(Userdata(userid,textid=nextid,rtext=newitem))
+                db.session.commit()
+                print('Added item',userid,newitem) #remove newitem arg due to security
+                #lst.append([req['newitem'],nextid])
+                res_body= { "ok": True,
+                            "statusText": "added success",
+                            "id":nextid
+                        }
+                #return make_response(jsonify(res_body),200)
+            else: res_body={"ok": False,
+                            "statusText": "Error occured"
+                            }
+            return make_response(jsonify(res_body),200)
+        else:
+            return bad_req()
+
+@app.errorhandler(404)
+def handle_404(path):
+    return '<title>405 Method Not Allowed</title><b>%s</b> <h1>Method Not Allowed**</h1><p>The method is not allowed for the requested URL.</p>' % path ,404
+app.run()
