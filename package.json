@@ -2,8 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-"homepage": "https://maishtiyaque.github.io/Aim_Tour_Code/",
-  "proxy": "https://flask-sr.herokuapp.com/",
+  "homepage": "https://maishtiyaque.github.io/Aim_Tour_Code/",
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -31,8 +30,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
- "predeploy": "npm run build",
-  "deploy": "gh-pages -d build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
