@@ -211,6 +211,32 @@ ALTER TABLE IF EXISTS public.userdata
 
 
 
+// db create_all 
+// models have all tables,
+from models import *
+db.create_all()
+
+// list tables
+db.metadata.tables.keys()
+
+// insert a element using db session
+user = Users(userid='s', passw='s', fname='Owais',lname='Ansari')
+db.session.add(user)
+db.session.commit()
+
+// insert a element using new session
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
+user = Users(userid='s', passw='s', fname='Owais',lname='Ansari')
+// must imported first from models import *
+engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'], future=True)
+session = Session(engine)
+session.add(user)
+session.commit()
+
+heroko flask port runnig 58043
+https://flask-sr.herokuapp.com/
+
 
 
 

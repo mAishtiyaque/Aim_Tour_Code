@@ -1,18 +1,14 @@
-from flask import Flask, redirect,request,jsonify,make_response, url_for
-from flask_sqlalchemy import SQLAlchemy
+from flask import request,jsonify,make_response, url_for
 import string,random
 from datetime import datetime
-from sqlalchemy import create_engine,select,insert,delete,update
+from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from sqlalchemy import select
-app = Flask(__name__)
-app.config.from_object('config.DevelopmentConfig')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+from models import *
+import sys
+
 engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'], future=True)
 #session = Session(engine)
-
-db = SQLAlchemy(app)
-from models import Users,Userdata,Tokens
+#print(app.config)
 
 #lst=[['Hello Bhai', 312], ['Mr. Owais', 313], ['Hello World', 314], ['Owais Bhai', 315]]
 
@@ -47,7 +43,7 @@ def handleRegister():
                     userid=req['username']
                     passw=req['password']
                     user=sess.query(Users).filter_by(userid=userid).count()
-                    #print('>>>> ',user)
+                    print('>>>> ',user)
                     if user:
                         res_body= { "ok": False,
                                 "statusText": "Username Already taken",
@@ -203,7 +199,8 @@ def handleAddItem():
                     print(req)
                     userid=req['username']
                     newitem=req['newitem']
-                    nextid=int(datetime.now().timestamp()*100) 
+                    nextid=str(int(datetime.now().timestamp()*100)) 
+                    #print("Time >>> ",datetime.now().timestamp())
                     sess.add(Userdata(userid,textid=nextid,rtext=newitem))
                     sess.commit()
                     print('Added',userid,newitem) #remove newitem arg due to security
@@ -223,4 +220,5 @@ def handleAddItem():
 @app.errorhandler(404)
 def handle_404(path):
     return '<title>405 Method Not Allowed</title><b>%s</b> <h1>Method Not Allowed**</h1><p>The method is not allowed for the requested URL.</p>' % path ,404
-app.run()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=config.Config.PORT)

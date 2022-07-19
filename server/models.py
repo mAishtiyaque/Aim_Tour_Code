@@ -1,12 +1,15 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import declarative_base
-Base = declarative_base()
-#app=Flask('Flask API')
-#db = SQLAlchemy(app)
+from sqlalchemy import Column, String
+#from sqlalchemy.orm import declarative_base
+#Base = declarative_base()
+import config 
+app=Flask(__name__)
+app.config.from_object(config.DevelopmentConfig)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
-class Users(Base):
+class Users(db.Model):
     __tablename__ = 'users'
     userid = Column(String,primary_key=True)
     passw = Column(String)
@@ -24,10 +27,10 @@ class Users(Base):
         return {'userid':self.userid,'passw':self.passw,'fname':self.fname,
                 'lname':self.lname}
 
-class Userdata(Base):
+class Userdata(db.Model):
     __tablename__ = 'userdata'
     userid = Column(String,primary_key=True)
-    textid = Column(Integer,primary_key=True)
+    textid = Column(String,primary_key=True)
     rtext = Column(String)
 
     def __init__(self,userid,textid,rtext):
@@ -37,9 +40,9 @@ class Userdata(Base):
         self.rtext=rtext
     
     def serialize(self):
-        return [self.rtext,self.textid]
+        return [self.rtext,int(self.textid)]
 
-class Tokens(Base):
+class Tokens(db.Model):
     __tablename__ = 'tokens'
     userid = Column(String,primary_key=True)
     token = Column(String,primary_key=True)
@@ -53,28 +56,3 @@ class Tokens(Base):
     
     def serialize(self):
         return {'userid':self.userid,'token':self.token}
-"""
-class Book(db.Model):
-    __tablename__ = 'books'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String())
-    author = db.Column(db.String())
-    published = db.Column(db.String())
-
-    def __init__(self, name, author, published):
-        self.name = name
-        self.author = author
-        self.published = published
-    
-    def __repr__(self):
-        return '<id {}>'.format(self.id)
-    
-    def serialize(self):
-        return {
-            'id': self.id, 
-            'name': self.name,
-            'author': self.author,
-            'published':self.published
-    }
-"""
