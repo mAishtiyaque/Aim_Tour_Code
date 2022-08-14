@@ -1,5 +1,35 @@
 
-## Available Scripts
+# 1. PROJECT CONTROL SHEET
+| 1. |	Team	| WD1425 |
+|----|--------|--------|
+| 2. |	Title Of Project |	Website for Tourist Attractions places of a Specific City |
+|3.|	Type Of Project|	Technical|
+|4.|	Members|	Md Ishtiyaque Ahmad <br/> Kirti Saraf <br/> Shivani Yadav <br/> Dipali Patil|
+|5.|	Company|	TickTech IT Solutions <br/> #TIS <br/> #ticktechitsolutions|
+|6.|	Domain of Project|	https://aim-tour-code.herokuapp.com/|
+|7.|	Language Of Document|	English|
+
+# 2.	Project Features
+1)	Register and Login authentication
+2)	detailed information about places 
+3)	place map 
+4)	speciality of that place
+5)	search places filter
+6)	Weather Forecasting
+
+# 3.	Tech Stack
+| Backend End	| Front End |
+| ------------|-----------|
+| 1. PostgreSQL |	1. React JS |
+| 2. Python Flask Framework |	2. Redux |
+| 3. SQLAlchemy 	| 3. CSS, HTML as JSX |
+
+Deployed on Heroku (Backend and Frontend both)
+
+# 4.	Approximate project completion duration.
+Approximate project completion duration is 10 days.
+
+# 5. Available Scripts
 
 ### `Command to Run App`
 <h5>To run React App</h5> 
